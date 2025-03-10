@@ -128,25 +128,7 @@ class Element(pg.sprite.Sprite):
         return True
 
 
-class Decoration(pg.sprite.Sprite):
 
-    def __init__(self, source, width, height, pos=(0, 0)):
-        super().__init__()
-        self.width = width
-        self.height = height
-        if isinstance(source, (str, Path)):
-            self.original_image = pg.image.load(str(source)).convert_alpha()
-            self.original_image = pg.transform.scale(self.original_image, (width, height))
-        elif isinstance(source, tuple):
-            self.original_image = pg.Surface((width, height))
-            self.original_image.fill(source)
-        self.image = self.original_image.copy()
-        self.rect = self.image.get_rect(center=pos)
-        self.pos = pos
-
-
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
 
 
 
