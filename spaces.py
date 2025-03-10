@@ -7,14 +7,13 @@ import pygame as pg
 import elements
 
 
-class GameSpace(pg.sprite.Sprite):
+class Space(pg.sprite.Sprite):
 
-    def __init__(self, source, width, height, pos=(0, 0), group=None):
+    def __init__(self, source, width, height, pos=(0, 0)):
         super().__init__()
         self.width = width
         self.height = height
         self.pos = pos
-        self.group_el = group if group is not None else pg.sprite.Group()
         if isinstance(source, (str, Path)):
             self.original_image = pg.image.load(str(source)).convert_alpha()
             self.original_image = pg.transform.scale(self.original_image, (width, height))
@@ -23,6 +22,18 @@ class GameSpace(pg.sprite.Sprite):
             self.original_image.fill(source)
         self.image = self.original_image.copy()
         self.rect = self.image.get_rect(topleft=pos)
+    
+    def draw(self, screen):
+        screen.blit(self.image, self.rect.center)
+    
+    def draw_rect(self, screen):
+        pg.draw.rect(screen, (255, 50, 50), self.rect, width=1)
+
+
+class GameSpace(Space):
+
+    def __init__(self, source, width, height, pos=(0, 0), group=None):
+        super().__init__(source, width, height, pos=pos)
 
         self.all_sprites = []
         self.elements_matrix: elements.Element = []
@@ -194,11 +205,11 @@ class GameSpace(pg.sprite.Sprite):
     def update(self, *args, **kwargs):
         return super().update(*args, **kwargs)
 
-    def draw(self, screen):
-        screen.blit(self.image, self.rect.center)
+    # def draw(self, screen):
+    #     screen.blit(self.image, self.rect.center)
     
-    def draw_rect(self, screen):
-        pg.draw.rect(screen, (255, 50, 50), self.rect, width=1)
+    # def draw_rect(self, screen):
+    #     pg.draw.rect(screen, (255, 50, 50), self.rect, width=1)
     
 
 
