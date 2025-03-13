@@ -1,0 +1,12 @@
+
+
+
+class SizeError(Exception):
+    pass
+
+
+
+
+
+
+
