@@ -32,7 +32,7 @@ class Element(pg.sprite.Sprite):
         self.selected = False
         self.delete_animate_count = 0
         self.is_deleted = False
-        self.weight = 0 # кол-во очков которое может дать элемент
+        self.weight = 1 # кол-во очков которое может дать элемент
         self.MOVE_STATE = False
     
     def equal(self, value):
@@ -101,8 +101,11 @@ class Element(pg.sprite.Sprite):
                 self.is_deleted = False
                 self.rect.center = (10, -10)
                 self.matrix_pos = (None, None)
+                self.delete_animate_count = 0
                 if self.alive():
                     self.kill()
+                return self.weight
+            return 0
 
     def move(self, target_pos, step=1):
         tx, ty = target_pos # целевая позиция

@@ -80,6 +80,10 @@ def main():
     running = True
     animate = False
     swap_list = []
+    scores = 0
+    record = 0
+    limit = 30
+    count_limit_steps = 0
 
     while running:
 
@@ -143,12 +147,11 @@ def main():
                 el.animate_select(100)
             
         if not gamespace.delete_elements_group:
-            # gamespace.add_element_to_first_row()
             gamespace.fill_empty_sections()
 
 
         for el in gamespace.delete_elements_group:
-            el.animate_delete(animate_delete_list, 50)
+            scores += el.animate_delete(animate_delete_list, 50)
 
         gamespace.el_group.draw(screen)
 
