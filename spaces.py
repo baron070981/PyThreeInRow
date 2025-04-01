@@ -134,6 +134,8 @@ class GameSpace(Space):
         return elements
 
     def delete_elements(self):
+        # print(self.delete_elements_group)
+        score = 0
         for el in self.delete_elements_group:
             i, j = el.matrix_pos
             if i is None or j is None:
