@@ -80,10 +80,10 @@ def main():
     running = True
     animate = False
     swap_list = []
-    scores = 0
-    record = 0
-    limit = 30
-    count_limit_steps = 0
+    scores = 0 # очки
+    record = 0 # рекорд очков за кол-во ходов
+    limit = 30 # макс кол-во ходов
+    count_limit_steps = 0 # счетчик сделанных ходов
 
     while running:
 
@@ -113,6 +113,8 @@ def main():
                                     el1.target_pos = el2.rect.center
                                     el2.target_pos = el1.rect.center
                                     gamespace.swap_elements_group.add(el1, el2)
+                                    count_limit_steps += 1
+                                    print("Count steps:", count_limit_steps)
                                 else:
                                     el2.selected = True
                                     gamespace.add_selected(el2)
